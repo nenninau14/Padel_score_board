@@ -111,21 +111,13 @@ html, body {
 
 .score-header {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  padding: 10px 16px;
+  padding: 8px 16px;
+  padding-top: max(8px, env(safe-area-inset-top));
   background: var(--surface);
   border-bottom: 1px solid var(--border);
   flex-shrink: 0;
-}
-.score-header button {
-  background: none;
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  color: var(--text-dim);
-  padding: 6px 12px;
-  font-size: 0.8rem;
-  cursor: pointer;
 }
 
 .sets-detail {
@@ -141,15 +133,29 @@ html, body {
 .set-score.current { color: var(--text); font-weight: 700; }
 
 .server-bar {
-  text-align: center;
-  padding: 12px 8px;
-  font-size: 1.4rem;
-  font-weight: 800;
-  color: var(--accent);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 12px;
   background: var(--surface);
   border-bottom: 2px solid var(--accent);
   flex-shrink: 0;
+}
+.server-bar #server-name {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--accent);
   letter-spacing: 0.5px;
+}
+.server-bar button {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text-dim);
+  padding: 8px 14px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  flex-shrink: 0;
 }
 
 .score-area { flex: 1; display: flex; flex-direction: column; }
