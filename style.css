@@ -1,0 +1,275 @@
+:root {
+  --bg: #f2f4f7;
+  --surface: #ffffff;
+  --accent: #d63031;
+  --accent2: #2d6cdf;
+  --text: #1a1a1a;
+  --text-dim: #666;
+  --border: #ddd;
+  --win: #00a676;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  user-select: none;
+  -webkit-user-select: none;
+  overflow: hidden;
+}
+
+/* Screens */
+.screen { display: none; flex-direction: column; height: 100dvh; padding: 16px; }
+.screen.active { display: flex; }
+
+/* ── Setup Screen ── */
+#setup {
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  gap: 14px;
+  padding: 20px 16px;
+  padding-top: max(20px, env(safe-area-inset-top));
+  padding-bottom: max(20px, env(safe-area-inset-bottom));
+}
+#setup h1 { text-align: center; font-size: 1.5rem; color: var(--accent); flex-shrink: 0; }
+
+.team-input {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex-shrink: 0;
+}
+.team-input label { font-size: 0.8rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; }
+.team-input .players { display: flex; flex-direction: column; gap: 8px; }
+.team-input input {
+  width: 100%;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px;
+  color: var(--text);
+  font-size: 1rem;
+}
+.team-input input:focus { outline: none; border-color: var(--accent); }
+
+.serve-pick {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex-shrink: 0;
+}
+.serve-pick label { font-size: 0.8rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; }
+.serve-options { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.serve-options button {
+  padding: 12px 8px;
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 1rem;
+  cursor: pointer;
+}
+.serve-options button.selected { border-color: var(--accent); background: rgba(214, 48, 49, 0.08); color: var(--accent); font-weight: 600; }
+
+#btn-start {
+  padding: 16px;
+  border: none;
+  border-radius: 12px;
+  background: var(--accent);
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+#btn-start:active { opacity: 0.8; }
+
+.setup-footer { display: flex; justify-content: center; flex-shrink: 0; }
+#btn-history {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 24px;
+  color: var(--text-dim);
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+/* ── Scoreboard Screen ── */
+#scoreboard { padding: 0; gap: 0; }
+
+.score-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 16px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.score-header button {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text-dim);
+  padding: 6px 12px;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.sets-detail {
+  display: flex;
+  gap: 12px;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+.set-score {
+  font-size: 0.9rem;
+  color: var(--text-dim);
+}
+.set-score.current { color: var(--text); font-weight: 700; }
+
+.server-bar {
+  text-align: center;
+  padding: 12px 8px;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--accent);
+  background: var(--surface);
+  border-bottom: 2px solid var(--accent);
+  flex-shrink: 0;
+  letter-spacing: 0.5px;
+}
+
+.score-area { flex: 1; display: flex; flex-direction: column; }
+
+.team-score {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  transition: background 0.1s;
+  min-height: 0;
+}
+.team-score:first-child { background: #2d6cdf; }
+.team-score:first-child .team-name,
+.team-score:first-child .points,
+.team-score:first-child .games-in-set { color: #fff; }
+.team-score:last-child { background: #d63031; }
+.team-score:last-child .team-name,
+.team-score:last-child .points,
+.team-score:last-child .games-in-set { color: #fff; }
+.team-score:active { filter: brightness(0.85); }
+
+.team-score .serve-indicator {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  font-size: 1.4rem;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.team-score .serve-indicator.active { opacity: 1; }
+
+.team-score .team-name {
+  font-size: 1rem;
+  color: var(--text-dim);
+  margin-bottom: 4px;
+}
+.team-score .points {
+  font-size: 4.5rem;
+  font-weight: 900;
+  line-height: 1;
+  color: var(--text);
+}
+.team-score .games-in-set {
+  font-size: 1.1rem;
+  color: var(--text-dim);
+  margin-top: 4px;
+}
+
+.divider {
+  height: 2px;
+  background: var(--border);
+  flex-shrink: 0;
+}
+
+.score-footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 16px;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.score-footer button {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text-dim);
+  padding: 8px 16px;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+/* ── History Screen ── */
+#history { gap: 12px; }
+#history h2 { text-align: center; color: var(--accent); }
+.history-back {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text-dim);
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  align-self: flex-start;
+}
+.history-list {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.history-item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px;
+  cursor: pointer;
+}
+.history-item:active { background: var(--bg); }
+.history-item .date { font-size: 0.75rem; color: var(--text-dim); }
+.history-item .teams { font-size: 1rem; font-weight: 600; margin: 4px 0; }
+.history-item .result { font-size: 0.9rem; color: var(--text-dim); }
+.history-empty { color: var(--text-dim); text-align: center; margin-top: 40px; }
+
+.history-footer {
+  flex-shrink: 0;
+  padding-top: 8px;
+}
+#btn-clear-history {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: none;
+  color: var(--text-dim);
+  font-size: 0.9rem;
+  cursor: pointer;
+}

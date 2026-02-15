@@ -1,0 +1,17 @@
+{
+  "name": "Padel Score Board",
+  "short_name": "Padel",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#f2f4f7",
+  "theme_color": "#d63031",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='64' fill='%231a1a2e'/><circle cx='256' cy='256' r='120' fill='%23e94560'/><text x='256' y='290' text-anchor='middle' font-size='160' font-family='sans-serif' font-weight='bold' fill='white'>P</text></svg>",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#f2f4f7">
+  <title>Padel Score Board</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='64' fill='%231a1a2e'/><circle cx='256' cy='256' r='120' fill='%23e94560'/><text x='256' y='290' text-anchor='middle' font-size='160' font-family='sans-serif' font-weight='bold' fill='white'>P</text></svg>">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ── Setup Screen ── -->
+  <div id="setup" class="screen active">
+    <h1>Padel Score Board</h1>
+
+    <div class="team-input">
+      <label>Team 1</label>
+      <div class="players">
+        <input type="text" id="t1p1" placeholder="Player 1" autocomplete="off">
+        <input type="text" id="t1p2" placeholder="Player 2" autocomplete="off">
+      </div>
+    </div>
+
+    <div class="team-input">
+      <label>Team 2</label>
+      <div class="players">
+        <input type="text" id="t2p1" placeholder="Player 3" autocomplete="off">
+        <input type="text" id="t2p2" placeholder="Player 4" autocomplete="off">
+      </div>
+    </div>
+
+    <div class="serve-pick">
+      <label>First serve</label>
+      <div class="serve-options">
+        <button data-team="0" data-player="0" id="srv-t1p1">Player 1</button>
+        <button data-team="0" data-player="1" id="srv-t1p2">Player 2</button>
+        <button data-team="1" data-player="0" id="srv-t2p1">Player 3</button>
+        <button data-team="1" data-player="1" id="srv-t2p2">Player 4</button>
+      </div>
+    </div>
+
+    <button id="btn-start">Start Match</button>
+
+    <div class="setup-footer">
+      <button id="btn-history">Match History</button>
+    </div>
+  </div>
+
+  <!-- ── Scoreboard Screen ── -->
+  <div id="scoreboard" class="screen">
+    <div class="score-header">
+      <button id="btn-new-match">&#x2190; New</button>
+      <div class="sets-detail"></div>
+      <button id="btn-undo">Undo</button>
+    </div>
+    <div class="server-bar" id="server-name">Serving: —</div>
+
+    <div class="score-area">
+      <div class="team-score" id="team0-area">
+        <span class="serve-indicator" id="serve0">&#x1F3BE;</span>
+        <div class="team-name" id="t1-name">Team 1</div>
+        <div class="points" id="t1-points">0</div>
+        <div class="games-in-set" id="t1-games">Games: 0</div>
+      </div>
+      <div class="divider"></div>
+      <div class="team-score" id="team1-area">
+        <span class="serve-indicator" id="serve1">&#x1F3BE;</span>
+        <div class="team-name" id="t2-name">Team 2</div>
+        <div class="points" id="t2-points">0</div>
+        <div class="games-in-set" id="t2-games">Games: 0</div>
+      </div>
+    </div>
+
+    <div class="score-footer">
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+
+  <!-- ── History Screen ── -->
+  <div id="history" class="screen">
+    <button class="history-back">&#x2190; Back</button>
+    <h2>Match History</h2>
+    <div class="history-list"></div>
+    <div class="history-footer">
+      <button id="btn-clear-history">Clear History</button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
